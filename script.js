@@ -90,9 +90,26 @@ let json= `[{
     "info": "Как и Росомаха из Людей Икс, Дэдпул был подвергнут опытам по программе «Оружие Икс». Ученые попытались исцелить его рак, привив его клеткам способность к регенерации. Как и всегда в комиксах, что-то пошло не так, и Дэдпул остался изуродованным и психически нестабильным. Это единственный супергерой из списка, который однозначно не на стороне добра. Дэдпул наслаждается насилием. Первоначально появившись в основной Вселенной Marvel, он получил альтернативные варианты в других реальностях Мультивселенной. Что оставалось неизменным — его циничное, чёрное чувство юмора: за него Дэдпула прозвали «Болтливым наёмником»"
 }]`
 
+const container = document.querySelector('.container');
 
 document.addEventListener("DOMContentLoaded", function(event) {
     let heroes = JSON.parse(json);
+    // создаём блок с рейтингом
+    const rating = document.createElement('div');
+    rating.className = 'rating';
+    const ratingStar0 = document.createElement('i');
+    ratingStar0.className = 'rating__star fa-regular fa-star fa-2xl';
+    const ratingStar1 = ratingStar0.cloneNode(true);
+    const ratingStar2= ratingStar0.cloneNode(true);
+    const ratingStar3 = ratingStar0.cloneNode(true);
+    const ratingStar4 = ratingStar0.cloneNode(true);
+    rating.appendChild(ratingStar0);
+    rating.appendChild(ratingStar1);
+    rating.appendChild(ratingStar2);
+    rating.appendChild(ratingStar3);
+    rating.appendChild(ratingStar4);
+
+    // выводим контент на страницу
     let heroesContent = "";
     for (let hero of heroes) {
         heroesContent += `<div class="hero">
@@ -103,16 +120,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         <div class="hero__friends">Друзья: ${hero.friends}</div>
         <div class="hero__superpowers">Суперсилы: ${hero.superpowers}</div>
         <button class="button">О герое</button>
-        <div class="rating">
-        <i class="rating__star fa-regular fa-star fa-2xl"></i>
-        <i class="rating__star fa-regular fa-star fa-2xl"></i>
-        <i class="rating__star fa-regular fa-star fa-2xl"></i>
-        <i class="rating__star fa-regular fa-star fa-2xl"></i>
-        <i class="rating__star fa-regular fa-star fa-2xl"></i>
-  </div>
+  <div>${rating.innerHTML}</div>
         </div>
-        `  }
-document.querySelector('.container').innerHTML = heroesContent;
+        `
+        }
+
+        container.innerHTML = heroesContent;
+
 });
 
-console.log(document.querySelector('.container'));
+

@@ -90,26 +90,52 @@ let json= `[{
     "info": "Как и Росомаха из Людей Икс, Дэдпул был подвергнут опытам по программе «Оружие Икс». Ученые попытались исцелить его рак, привив его клеткам способность к регенерации. Как и всегда в комиксах, что-то пошло не так, и Дэдпул остался изуродованным и психически нестабильным. Это единственный супергерой из списка, который однозначно не на стороне добра. Дэдпул наслаждается насилием. Первоначально появившись в основной Вселенной Marvel, он получил альтернативные варианты в других реальностях Мультивселенной. Что оставалось неизменным — его циничное, чёрное чувство юмора: за него Дэдпула прозвали «Болтливым наёмником»"
 }]`
 
+
+let heroes = JSON.parse(json);
 const container = document.querySelector('.container');
 
-document.addEventListener("DOMContentLoaded", function(event) {
-    let heroes = JSON.parse(json);
     // создаём блок с рейтингом
-    const rating = document.createElement('div');
-    rating.className = 'rating';
-    const ratingStar0 = document.createElement('i');
-    ratingStar0.className = 'rating__star fa-regular fa-star fa-2xl';
-    const ratingStar1 = ratingStar0.cloneNode(true);
-    const ratingStar2= ratingStar0.cloneNode(true);
-    const ratingStar3 = ratingStar0.cloneNode(true);
-    const ratingStar4 = ratingStar0.cloneNode(true);
-    rating.appendChild(ratingStar0);
-    rating.appendChild(ratingStar1);
-    rating.appendChild(ratingStar2);
-    rating.appendChild(ratingStar3);
-    rating.appendChild(ratingStar4);
+    // const rating = document.createElement('div');
+    // rating.className = 'rating';
+    // const ratingStar0 = document.createElement('i');
+    // ratingStar0.className = 'rating__star fa-solid fa-star fa-2xl';
+    // const ratingStar1 = ratingStar0.cloneNode(true);
+    // const ratingStar2= ratingStar0.cloneNode(true);
+    // const ratingStar3 = ratingStar0.cloneNode(true);
+    // const ratingStar4 = ratingStar0.cloneNode(true);
 
-    // выводим контент на страницу
+    // rating.appendChild(ratingStar0);
+    // rating.appendChild(ratingStar1);
+    // rating.appendChild(ratingStar2);
+    // rating.appendChild(ratingStar3);
+    // rating.appendChild(ratingStar4);
+
+  
+    
+
+    const starButton = document.createElement('button');
+   
+    starButton.classList = 'rating__star-button';
+    const ratingStar0 = document.createElement('i');
+    ratingStar0.classList = 'rating__star fa-solid fa-star fa-2xl';
+    const ratingStarTotal0 = starButton.appendChild(ratingStar0);
+    
+    const starButton1 = starButton.cloneNode(true);
+    const starButton2 = starButton.cloneNode(true);
+    const starButton3 = starButton.cloneNode(true);
+    const starButton4 = starButton.cloneNode(true);
+
+    starButton.value = 1;
+    starButton1.value = 2;
+    starButton2.value = 3;
+    starButton3.value = 4;
+    starButton4.value = 5;
+    let starsArray = [starButton, starButton1, starButton2, starButton3, starButton4];
+    
+
+//парсим json и выводим контент на страницу
+document.addEventListener("DOMContentLoaded", function(event) {
+  
     let heroesContent = "";
     for (let hero of heroes) {
         heroesContent += `<div class="hero">
@@ -120,13 +146,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
         <div class="hero__friends">Друзья: ${hero.friends}</div>
         <div class="hero__superpowers">Суперсилы: ${hero.superpowers}</div>
         <button class="button">О герое</button>
-  <div>${rating.innerHTML}</div>
+        <div class="rating">
+        ${starsArray[0].outerHTML}
+        ${starsArray[1].outerHTML}
+        ${starsArray[2].outerHTML}
+        ${starsArray[3].outerHTML}
+        ${starsArray[4].outerHTML}
+</div>
         </div>
-        `
-        }
+        `;
 
-        container.innerHTML = heroesContent;
+    }
+    container.innerHTML = heroesContent;
+
+    let rating =  document.querySelector('.rating');
+    let ratingArray = Array.from(rating.children);
+
+
+    for (let i=0; i<ratingArray.length; i++) {
+    ratingArray[i].onclick = function() {
+        for (let t=0; t<heroes.length; t++) {  
+    console.log(`${heroes[t].name} : ${ratingArray[i].value}`);
+}
+        }};
+
 
 });
+
 
 

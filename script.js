@@ -122,6 +122,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
     rating.appendChild(ratingStar3);
     rating.appendChild(ratingStar4);
 
+
+
+    // создаем кнопку О герое
+    const heroButton = document.createElement('button');
+    heroButton.classList = 'hero__button';
+    heroButton.innerText = 'О герое';   
+    heroButton.setAttribute('type', 'button');
+
+
   
     let heroesContent = "";
     for (let hero of heroes) {
@@ -132,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         <div class="hero__occupation">Род деятельности: ${hero.occupation}</div>
         <div class="hero__friends">Друзья: ${hero.friends}</div>
         <div class="hero__superpowers">Суперсилы: ${hero.superpowers}</div>
-        <button class="button">О герое</button>
+        ${heroButton.outerHTML}
         ${rating.outerHTML}
         </div>
         `;
@@ -153,8 +162,44 @@ for (let i=0; i< allStarsArray.length; i++) {
       });
 }
 
+
+// модальные окна с инфо о героях
+// собираем массив всех кнопок О герое
+let allHeroButtons = document.querySelectorAll('.hero__button');
+console.log(allHeroButtons);
+let allHeroButtonsArray = Array.from(allHeroButtons);
+console.log(allHeroButtonsArray);
+
+
+
+//проходимся циклом по кнопкам
+for (let t=0; t<allHeroButtonsArray.length; t++) {
+    let modal = document.getElementById('heroModal');
+    modal.innerHTML = `<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="heroModalLabel">${heroes[t].name}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+      ${heroes[t].info}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+
+      </div>
+    </div>
+  </div>`
+    let modalWindow = new bootstrap.Modal(modal);
+    allHeroButtonsArray[t].addEventListener('click', function () {
+        modalWindow.show();
+console.log('Привет!');
+console.log(heroes[t].name);
+console.log(heroes[t].info);
+    })
+}
+
+
 });
-
-
 
 

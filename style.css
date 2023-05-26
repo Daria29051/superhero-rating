@@ -21,10 +21,12 @@
     font-family: 'Lobster', cursive;
 }
 
-    .button {
-        border-radius: 2px;
-        cursor: pointer;
-
+.hero__button {
+    width: 80px;
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: yellow;
     }
 
 

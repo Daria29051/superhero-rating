@@ -184,11 +184,16 @@ for (let item of heroElementArray) {
         });
 
         heroStarsArray[i].addEventListener('mouseover', function () {
+            if (i>0) {
             heroStarsArray[i].classList.add('focus');
             heroStarsArray[i].previousSibling.classList.add('focus');
+            } else {
+                heroStarsArray[0].classList.add('focus');
+            }
         });
 
         heroStarsArray[i].addEventListener('mouseout', function () {
+            
             heroStarsArray[i].classList.remove('focus');
             heroStarsArray[i].nextSibling.classList.remove('focus');
         });

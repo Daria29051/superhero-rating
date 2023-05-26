@@ -91,6 +91,9 @@ let json= `[{
 }]`
 
 
+
+
+
 let heroes = JSON.parse(json);
 const container = document.querySelector('.container');
 
@@ -103,7 +106,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     rating.classList = 'rating';
     const ratingStar0 = document.createElement('div');
     ratingStar0.classList = 'rating__star';
-    
     const ratingStar1 = ratingStar0.cloneNode(true);
     const ratingStar2= ratingStar0.cloneNode(true);
     const ratingStar3 = ratingStar0.cloneNode(true);
@@ -159,9 +161,39 @@ for (let i=0; i< allStarsArray.length; i++) {
     allStarsArray[i].addEventListener('click', function () {
         console.log(`${allStarsArray[i].parentElement.parentElement.querySelector('.hero__name').textContent}: ${allStarsArray[i].getAttribute('value')}`);
         localStorage.setItem(allStarsArray[i].parentElement.parentElement.querySelector('.hero__name').textContent , allStarsArray[i].getAttribute('value'));
-      });
+    }); 
 }
 
+// ДЕЛАЕМ ЗВЕЗДОЧКИ АКТИВНЫМИ ДЛЯ КАЖДОГО ГЕРОЯ
+let heroElements = document.querySelectorAll('.hero');
+let heroElementArray = Array.from(heroElements);
+for (let item of heroElementArray) {
+    let heroRating = item.querySelectorAll('.rating');
+    let heroRatingArray = Array.from(heroRating); // массив рейтингов
+    let heroStars = item.querySelectorAll('.rating__star');
+    let heroStarsArray = Array.from(heroStars);// массив ссо звездами для кажд героя
+    for (let i=0; i<heroStarsArray.length; i++) {
+        heroStarsArray[i].addEventListener('click', function () {
+            heroStarsArray[i].classList.add('active');
+            if (i>0) {
+            heroStarsArray[i].previousSibling.classList.add('active');
+            heroStarsArray[i].nextSibling.classList.remove('active');
+        } else  {
+            heroStarsArray[0].nextSibling.classList.remove('active');
+        }
+        });
+
+        heroStarsArray[i].addEventListener('mouseover', function () {
+            heroStarsArray[i].classList.add('focus');
+            heroStarsArray[i].previousSibling.classList.add('focus');
+        });
+
+        heroStarsArray[i].addEventListener('mouseout', function () {
+            heroStarsArray[i].classList.remove('focus');
+            heroStarsArray[i].nextSibling.classList.remove('focus');
+        });
+    }
+}
 
 // модальные окна с инфо о героях
 // собираем массив всех кнопок О герое

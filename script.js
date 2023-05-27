@@ -175,29 +175,67 @@ for (let item of heroElementArray) {
     let heroStars = item.querySelectorAll('.rating__star');
     let heroStarsArray = Array.from(heroStars);// массив ссо звездами для кажд героя
     for (let i=0; i<heroStarsArray.length; i++) {
-        heroStarsArray[i].addEventListener('click', function () {
-            heroStarsArray[i].classList.add('active');
-            if (i>0) {
-            heroStarsArray[i].previousSibling.classList.add('active');
-            heroStarsArray[i].nextSibling.classList.remove('active');
-        } else  {
-            heroStarsArray[0].nextSibling.classList.remove('active');
+
+
+        // функция выбора всех предыдущих соседей
+        function getPreviousSiblings(elem, filter) {
+            let sibs = [];
+            while (elem = elem.previousSibling) {
+                if (elem.nodeType === 3) continue; // text node
+                if (!filter || filter(elem)) sibs.push(elem);
+            }
+            return sibs;
         }
+
+        // функция выбора всех последующих соседей
+        function getNextSiblings(elem, filter) {
+            let sibs = [];
+            while (elem = elem.nextSibling) {
+                if (elem.nodeType === 3) continue; // text node
+                if (!filter || filter(elem)) sibs.push(elem);
+            }
+            return sibs;
+        }
+
+// фильтр для функции выбора предшествующих и последующих соседей
+        function exampleFilter(elem) {
+if (elem.classList.contains('rating__star')) {
+    return elem.previousSibling;
+            }}
+
+// обработчик на событие click
+        heroStarsArray[i].addEventListener('click', function () {
+            let prevSiblings =getPreviousSiblings(heroStarsArray[i],exampleFilter);
+            let nextSiblings =getNextSiblings(heroStarsArray[i],exampleFilter);
+            heroStarsArray[i].classList.add('active');
+            for (star of prevSiblings) {
+                star.classList.add('active');
+            }
+
+            for (star of nextSiblings) {
+                star.classList.remove('active');
+            }
+        
         });
 
+
+// обработчик на событие mouseover
         heroStarsArray[i].addEventListener('mouseover', function () {
-            if (i>0) {
+            let prevSiblings =getPreviousSiblings(heroStarsArray[i],exampleFilter);
             heroStarsArray[i].classList.add('focus');
-            heroStarsArray[i].previousSibling.classList.add('focus');
-            } else {
-                heroStarsArray[0].classList.add('focus');
+            heroStarsArray[0].classList.add('focus');
+            for (star of prevSiblings) {
+                star.classList.add('focus');
             }
         });
 
+    // обработчик на событие mouseout
         heroStarsArray[i].addEventListener('mouseout', function () {
-            
+            let prevSiblings =getPreviousSiblings(heroStarsArray[i],exampleFilter);
             heroStarsArray[i].classList.remove('focus');
-            heroStarsArray[i].nextSibling.classList.remove('focus');
+            for (star of prevSiblings) {
+                star.classList.remove('focus');
+            }
         });
     }
 }

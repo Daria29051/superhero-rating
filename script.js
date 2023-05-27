@@ -136,6 +136,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   
     let heroesContent = "";
     for (let hero of heroes) {
+
         heroesContent += `<div class="hero">
         <h1 class="hero__name">${hero.name}</h1>
         <div class="hero__universe">Вселенная: ${hero.universe}</div>
@@ -143,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         <div class="hero__occupation">Род деятельности: ${hero.occupation}</div>
         <div class="hero__friends">Друзья: ${hero.friends}</div>
         <div class="hero__superpowers">Суперсилы: ${hero.superpowers}</div>
+        <img class="hero__img"src=${hero.url} alt="hero image">
         ${heroButton.outerHTML}
         ${rating.outerHTML}
         </div>

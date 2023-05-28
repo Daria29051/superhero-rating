@@ -139,11 +139,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         heroesContent += `<div class="hero">
         <h1 class="hero__name">${hero.name}</h1>
-        <div class="hero__universe">Вселенная: ${hero.universe}</div>
-        <div class="hero__alterego">Альтер эго: ${hero.alterego}</div>\
-        <div class="hero__occupation">Род деятельности: ${hero.occupation}</div>
-        <div class="hero__friends">Друзья: ${hero.friends}</div>
-        <div class="hero__superpowers">Суперсилы: ${hero.superpowers}</div>
+        <div class="hero__charactetistic hero__universe"><span class="hero__subtitle">Вселенная:</span> ${hero.universe}</div>
+        <div class="hero__charactetistic hero__alterego"><span class="hero__subtitle">Альтер эго:</span> ${hero.alterego}</div>\
+        <div class="hero__charactetistic hero__occupation"><span class="hero__subtitle">Род деятельности:</span> ${hero.occupation}</div>
+        <div class="hero__charactetistic hero__friends"><span class="hero__subtitle">Друзья:</span> ${hero.friends}</div>
+        <div class="hero__charactetistic hero__superpowers"><span class="hero__subtitle">Суперсилы:</span> ${hero.superpowers}</div>
         <img class="hero__img"src=${hero.url} alt="hero image">
         ${heroButton.outerHTML}
         ${rating.outerHTML}
@@ -208,6 +208,7 @@ if (elem.classList.contains('rating__star')) {
             let prevSiblings =getPreviousSiblings(heroStarsArray[i],exampleFilter);
             let nextSiblings =getNextSiblings(heroStarsArray[i],exampleFilter);
             heroStarsArray[i].classList.add('active');
+            heroStarsArray[0].classList.add('active');
             for (star of prevSiblings) {
                 star.classList.add('active');
             }
@@ -233,6 +234,7 @@ if (elem.classList.contains('rating__star')) {
         heroStarsArray[i].addEventListener('mouseout', function () {
             let prevSiblings =getPreviousSiblings(heroStarsArray[i],exampleFilter);
             heroStarsArray[i].classList.remove('focus');
+            heroStarsArray[0].classList.remove('focus');
             for (star of prevSiblings) {
                 star.classList.remove('focus');
             }

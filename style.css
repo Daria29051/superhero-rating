@@ -6,22 +6,35 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-   justify-items: center;
-   margin-bottom: 20px;
+    justify-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .hero {
     display: grid;
-    justify-items: center;
     width: 450px;
     background-color: white;
     border: 2px solid brown;
     padding: 20px;
-    
-    }
+}
+
+.hero__subtitle {
+    font-weight: 600;
+}
+
+.hero__charactetistic {
+    padding-left: 30px;
+}
 
 .hero__name {
-    font-family: 'Lobster', cursive;
+    margin: auto;
+    font-family: 'Lobster', cursive;   
+}
+
+.hero__img {
+    padding-top: 20px;
+    margin: auto;
 }
 
 .hero__button {
@@ -30,7 +43,8 @@
     border-radius: 4px;
     cursor: pointer;
     background-color: gold;
-    }
+    margin: auto;
+}
 
 .hero__img {
     width: 280px;
@@ -41,29 +55,28 @@
 
     /* Рейтинг */
 .rating {
-display: flex;
-flex-direction: row;
-margin-top: 20px;
-gap: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin: auto;
+    padding-top: 20px;
 }
 
-/* убираем стили с кнопки */
-
- .rating__star {
+.rating__star {
     width: 40px;
     height: 40px;
     background-color: rgba(128, 128, 128, 0.5);
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 38% 35%);
     cursor: pointer;
- }
+}
 
 
 
-  .focus{
+.focus{
     background-color: gold;
- }
+}
 
- .active {
+.active {
     background-color: gold;
- }
+}
 

@@ -252,29 +252,26 @@ console.log(allHeroButtonsArray);
 
 
 //проходимся циклом по кнопкам
-for (let t=0; t<allHeroButtonsArray.length; t++) {
-    let modal = document.getElementById('heroModal');
-    modal.innerHTML = `<div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="heroModalLabel">${heroes[t].name}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-      </div>
-      <div class="modal-body">
-      ${heroes[t].info}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-
-      </div>
-    </div>
-  </div>`
-    let modalWindow = new bootstrap.Modal(modal);
+for (let t=0; t<allHeroButtonsArray.length; t++) { 
     allHeroButtonsArray[t].addEventListener('click', function () {
+        let modal = document.getElementById('heroModal');
+        modal.innerHTML = `<div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="heroModalLabel">${heroes[t].name}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+          </div>
+          <div class="modal-body">
+          ${heroes[t].info}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+    
+          </div>
+        </div>
+      </div>`
+        let modalWindow = new bootstrap.Modal(modal);
         modalWindow.show();
-console.log('Привет!');
-console.log(heroes[t].name);
-console.log(heroes[t].info);
     })
 }
 

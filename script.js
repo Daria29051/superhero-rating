@@ -154,9 +154,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // собираем массив всех звездочек на странице
 let allStars = document.querySelectorAll('.rating__star');
-console.log(allStars);
 let allStarsArray = Array.from(allStars);
-console.log(allStarsArray);
+
 
 // проходимся по звездочкм циклом и выводим инфо в формате "имя героя: оценка"
 for (let i=0; i< allStarsArray.length; i++) {
@@ -245,9 +244,7 @@ if (elem.classList.contains('rating__star')) {
 // модальные окна с инфо о героях
 // собираем массив всех кнопок О герое
 let allHeroButtons = document.querySelectorAll('.hero__button');
-console.log(allHeroButtons);
 let allHeroButtonsArray = Array.from(allHeroButtons);
-console.log(allHeroButtonsArray);
 
 
 

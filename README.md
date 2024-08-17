@@ -1,7 +1,7 @@
 # Superhero rating website <br/>
  Website about superheroes <br/>
 <img src="readme1.png" />
-<img src="readme3.png" />
+<img src="readme2.png" />
 
 
 ## Website link: <br/>

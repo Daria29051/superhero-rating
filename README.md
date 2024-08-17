@@ -10,7 +10,7 @@
 
 
 ## Functionality <br/>
-  <strong>Superhero rating website</strong> <br/>
+  <strong>Superhero rating website includes: </strong> <br/>
 	&bull; Information cards about each superhero<br/>
 	&bull; Modal windows with extra information about each superhero<br/>
     &bull; Interactive rating stars for each superhero<br/><br/>
